@@ -1,5 +1,5 @@
 import 'styles/globals.scss'
-import 'styles/fonts.scss'
+import 'styles/Fonts.scss'
 
 import Header from 'components/Header/Header'
 import Footer from 'components/Footer/Footer'
