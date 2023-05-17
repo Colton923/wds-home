@@ -3,8 +3,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './Header.module.scss'
+import { useEffect } from 'react'
 
 export default function Header() {
+  useEffect(() => {
+    const overlay = document.getElementById('overlay')
+    overlay?.classList.remove(styles.active)
+  }, [])
+
   const handleChange = () => {
     const overlay = document.getElementById('overlay')
     overlay?.classList.toggle(styles.active)
