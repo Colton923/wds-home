@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import axios from 'axios'
 import styles from 'styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
 
@@ -28,7 +27,13 @@ export default function Index() {
     if (errors.name || errors.email || errors.message) return
     setLoading(true)
     try {
-      const response = await axios.post('/api/sendEmail', formData)
+      const response = await fetch('api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
       if (response.status === 200) {
         setLoading(false)
         reset()
