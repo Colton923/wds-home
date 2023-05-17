@@ -2,9 +2,10 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from 'styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
+import Ad from 'components/Ad/Ad'
 
 interface FormData {
   name: string
@@ -58,6 +59,15 @@ export default function Index() {
     contact?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src =
+      'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7507197443167447'
+    script.async = true
+    script.crossOrigin = 'anonymous'
+    document.body.appendChild(script)
+  }, [])
+
   return (
     <div className={styles.container}>
       <div className={styles.cta}>
@@ -83,6 +93,7 @@ export default function Index() {
         <h2 className={styles.aboutTitle} id={'what'}>
           WHAT WE DO
         </h2>
+        <Ad />
         <ul className={styles.aboutList}>
           <li className={styles.aboutListItem}>Top Notch Web Design</li>
           <li className={styles.aboutListItem}>
@@ -96,6 +107,7 @@ export default function Index() {
           </li>
           <li className={styles.aboutListItem}>Algorithms & Data Management</li>
         </ul>
+        <Ad />
       </div>
       <div className={styles.pictures}>
         <Link href="https://www.contigojanitorial.com" className={styles.picture}>
