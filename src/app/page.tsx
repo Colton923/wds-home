@@ -200,7 +200,7 @@ export default function Index() {
       </div>
       <div className={styles.blogs}>
         <Suspense fallback={<div>Loading...</div>}>
-          {blogNames.length > 0 &&
+          {blogNames?.length > 0 &&
             blogNames.map((blogName) => (
               <div key={blogName.id} className={styles.blogNamesContainer}>
                 <Link href={`/blog/${blogName.id}`} className={styles.blogLink}>

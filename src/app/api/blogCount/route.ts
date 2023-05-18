@@ -12,7 +12,6 @@ export async function GET() {
     // this route will return how many blog posts there are, and the title of the blog post
 
     const blogs: Blog[] = (await kv.get('blog')) || []
-
     const blogNames = blogs.map((blog) => {
       return { title: blog.title, id: blog.id }
     })
