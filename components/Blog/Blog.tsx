@@ -2,17 +2,12 @@ import type { BlogNames } from 'app/api/blogCount/route'
 import styles from 'styles/Home.module.scss'
 
 async function getBlogNames() {
-  const response = await fetch(
-    process.env.NEXT_PUBLIC_ENV === 'development'
-      ? 'http://localhost:3000/api/blogCount'
-      : 'https://webdevelopersolutions.com/api/blogCount',
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  )
+  const response = await fetch('https://webdevelopersolutions.com/api/blogCount', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
