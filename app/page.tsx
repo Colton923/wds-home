@@ -32,6 +32,7 @@ export default function Index() {
     setLoading(true)
     try {
       const response = await fetch('api/sendEmail', {
+        cache: 'no-cache',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -69,19 +70,15 @@ export default function Index() {
     script.async = true
     script.crossOrigin = 'anonymous'
     document.body.appendChild(script)
-    const Blogs = async () => {
-      await fetch('/api/blogCount')
-        .then((res) => res.json())
-        .then((res) => {
-          if (res.status !== 'success') {
-            setBlogNames([])
-            return
-          }
+  }, [])
 
-          setBlogNames(res.blogNames)
-        })
+  useEffect(() => {
+    const getBlogNames = async () => {
+      const response = await fetch('api/blogCount')
+      const data = await response.json()
+      setBlogNames(data.blogNames)
     }
-    Blogs()
+    getBlogNames()
   }, [])
 
   return (
