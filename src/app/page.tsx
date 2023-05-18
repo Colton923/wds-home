@@ -65,9 +65,14 @@ export default function Index() {
   const ReportBlogNames = async () => {
     // getBlogNames type
     // return
-    const Blogs: BlogNames[] = await fetch('api/blogCount')
+    const Blogs: BlogNames[] = await fetch('api/blogCount', { cache: 'no-store' })
       .then((res) => res.json())
       .then((res) => res.blogNames)
+      .catch((err) => {
+        console.log(err)
+        return []
+      })
+
     setBlogNames(Blogs)
   }
 
