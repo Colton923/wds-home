@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import styles from 'styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
 import Ad from 'components/Ad/Ad'
@@ -16,7 +16,6 @@ interface FormData {
 }
 
 export default async function Page() {
-  const [loading, setLoading] = useState(false)
   const {
     register,
     handleSubmit,
@@ -26,10 +25,8 @@ export default async function Page() {
 
   const ButtonClick = async (formData: FormData) => {
     if (errors.name || errors.email || errors.message) return
-    setLoading(true)
     try {
       const response = await fetch('api/sendEmail', {
-        cache: 'no-cache',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,7 +34,6 @@ export default async function Page() {
         body: JSON.stringify(formData),
       })
       if (response.status === 200) {
-        setLoading(false)
         reset()
 
         setTimeout(() => {
@@ -46,11 +42,9 @@ export default async function Page() {
           )
         }, 10)
       } else {
-        setLoading(false)
         alert('Error! Your message could not be sent. Please try again later.')
       }
     } catch (error) {
-      setLoading(false)
       alert('Error! Your message could not be sent. Please try again later.')
     }
   }
@@ -181,7 +175,7 @@ export default async function Page() {
             })}
           />
           <button className={styles.contactButton} type={'submit'}>
-            {loading ? 'Loading...' : 'SUBMIT'}
+            {'SUBMIT'}
           </button>
         </form>
       </div>
