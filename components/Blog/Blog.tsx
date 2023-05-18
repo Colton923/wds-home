@@ -1,7 +1,7 @@
 import type { BlogNames } from 'app/api/blogCount/route'
 import styles from 'styles/Home.module.scss'
 
-async function getBlogNames() {
+export async function generateStaticParams() {
   const response = await fetch('https://webdevelopersolutions.com/api/blogCount', {
     method: 'GET',
     headers: {
@@ -14,9 +14,8 @@ async function getBlogNames() {
   return await response.json()
 }
 
-export default async function Blog() {
-  const blogNamesData = getBlogNames()
-  const [blogNames] = await Promise.all([blogNamesData])
+export default async function Blog({ blogs }: { blogs: { blogs: BlogNames[] } }) {
+  const blogNames = blogs
 
   return (
     <div className={styles.blog}>

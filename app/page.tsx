@@ -15,7 +15,7 @@ interface FormData {
   comments: string
 }
 
-export default function Page() {
+export default async function Page() {
   const [loading, setLoading] = useState(false)
   const {
     register,

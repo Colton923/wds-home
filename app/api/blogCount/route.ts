@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@vercel/kv'
-import type { Blog } from 'app/[id]/page'
+import { kv } from '@vercel/kv'
 
 export type BlogNames = {
   title: string
@@ -10,11 +9,11 @@ export type BlogNames = {
 export async function GET() {
   try {
     // this route will return how many blog posts there are, and the title of the blog post
-    const kv = createClient({
-      url: process.env.KV_REST_API_URL as string,
-      token: process.env.KV_REST_API_TOKEN as string,
-    })
-    const blogs: Blog[] = (await kv.get('blog')) || []
+    // const kv = createClient({
+    //   url: process.env.KV_REST_API_URL as string,
+    //   token: process.env.KV_REST_API_TOKEN as string,
+    // })
+    const blogs = await kv.get('blog')
     return NextResponse.json({ status: 'success', blogs })
   } catch (error) {
     console.log(error)

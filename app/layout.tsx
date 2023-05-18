@@ -1,10 +1,12 @@
+'use client'
+
 import 'styles/globals.scss'
 import 'styles/Fonts.scss'
-import styles from 'styles/Home.module.scss'
 import Header from 'components/Header/Header'
 import Footer from 'components/Footer/Footer'
-import Blog from 'components/Blog/Blog'
-import { Suspense } from 'react'
+// import Blog from 'components/Blog/Blog'
+// import { Suspense } from 'react'
+// import styles from 'styles/Home.module.scss'
 
 interface Props {
   children: React.ReactNode
