@@ -1,8 +1,9 @@
 import 'styles/globals.scss'
 import 'styles/Fonts.scss'
-
 import Header from 'components/Header/Header'
 import Footer from 'components/Footer/Footer'
+import Blog from 'components/Blog/Blog'
+import styles from 'styles/Home.module.scss'
 
 interface Props {
   children: React.ReactNode
@@ -36,6 +37,11 @@ export default async function RootLayout({ children }: Props) {
         <main>
           <Header />
           {children}
+          <div className={styles.blogs}>
+            <div className={styles.blogNamesContainer}>
+              <Blog />
+            </div>
+          </div>
           <Footer />
         </main>
       </body>

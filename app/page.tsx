@@ -2,12 +2,10 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import styles from 'styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
 import Ad from 'components/Ad/Ad'
-import type { BlogNames } from './api/blogCount/route'
-import { Suspense } from 'react'
 
 interface FormData {
   name: string
@@ -17,19 +15,16 @@ interface FormData {
   comments: string
 }
 
-export default function Index() {
-  const [loading, setLoading] = useState(false)
+export default async function Page() {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm<FormData>({})
-  const [blogNames, setBlogNames] = useState<BlogNames[]>([])
 
   const ButtonClick = async (formData: FormData) => {
     if (errors.name || errors.email || errors.message) return
-    setLoading(true)
     try {
       const response = await fetch('api/sendEmail', {
         method: 'POST',
@@ -39,7 +34,6 @@ export default function Index() {
         body: JSON.stringify(formData),
       })
       if (response.status === 200) {
-        setLoading(false)
         reset()
 
         setTimeout(() => {
@@ -48,11 +42,9 @@ export default function Index() {
           )
         }, 10)
       } else {
-        setLoading(false)
         alert('Error! Your message could not be sent. Please try again later.')
       }
     } catch (error) {
-      setLoading(false)
       alert('Error! Your message could not be sent. Please try again later.')
     }
   }
@@ -62,20 +54,6 @@ export default function Index() {
     contact?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const ReportBlogNames = async () => {
-    // getBlogNames type
-    // return
-    const Blogs: BlogNames[] = await fetch('api/blogCount', { cache: 'no-store' })
-      .then((res) => res.json())
-      .then((res) => res.blogNames)
-      .catch((err) => {
-        console.log(err)
-        return []
-      })
-
-    setBlogNames(Blogs)
-  }
-
   useEffect(() => {
     const script = document.createElement('script')
     script.src =
@@ -83,8 +61,6 @@ export default function Index() {
     script.async = true
     script.crossOrigin = 'anonymous'
     document.body.appendChild(script)
-
-    ReportBlogNames()
   }, [])
 
   return (
@@ -199,21 +175,9 @@ export default function Index() {
             })}
           />
           <button className={styles.contactButton} type={'submit'}>
-            {loading ? 'Loading...' : 'SUBMIT'}
+            {'SUBMIT'}
           </button>
         </form>
-      </div>
-      <div className={styles.blogs}>
-        <Suspense fallback={<div>Loading...</div>}>
-          {blogNames?.length > 0 &&
-            blogNames.map((blogName) => (
-              <div key={blogName.id} className={styles.blogNamesContainer}>
-                <Link href={`/blog/${blogName.id}`} className={styles.blogLink}>
-                  {blogName.title}
-                </Link>
-              </div>
-            ))}
-        </Suspense>
       </div>
     </div>
   )

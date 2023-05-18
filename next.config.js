@@ -11,7 +11,7 @@ module.exports = {
   },
   reactStrictMode: true,
   experimental: {
-    serverActions: true,
+    appDir: true,
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
