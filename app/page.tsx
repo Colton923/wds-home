@@ -74,7 +74,12 @@ export default function Index() {
 
   useEffect(() => {
     const getBlogNames = async () => {
-      const response = await fetch('api/blogCount')
+      const response = await fetch('api/blogCount', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
       const data = await response.json()
       setBlogNames(data.blogNames)
     }
