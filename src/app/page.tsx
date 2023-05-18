@@ -7,6 +7,7 @@ import styles from 'styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
 import Ad from 'components/Ad/Ad'
 import type { BlogNames } from './api/blogCount/route'
+import { Suspense } from 'react'
 
 interface FormData {
   name: string
@@ -198,14 +199,16 @@ export default function Index() {
         </form>
       </div>
       <div className={styles.blogs}>
-        {blogNames?.length > 0 &&
-          blogNames.map((blogName) => (
-            <div key={blogName.id} className={styles.blogNamesContainer}>
-              <Link href={`/blog/${blogName.id}`} className={styles.blogLink}>
-                {blogName.title}
-              </Link>
-            </div>
-          ))}
+        <Suspense fallback={<div>Loading...</div>}>
+          {blogNames?.length > 0 &&
+            blogNames.map((blogName) => (
+              <div key={blogName.id} className={styles.blogNamesContainer}>
+                <Link href={`/blog/${blogName.id}`} className={styles.blogLink}>
+                  {blogName.title}
+                </Link>
+              </div>
+            ))}
+        </Suspense>
       </div>
     </div>
   )
