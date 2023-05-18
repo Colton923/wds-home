@@ -9,7 +9,7 @@ async function getBlogNames() {
     },
   })
   if (!response.ok) {
-    throw new Error('Network response was not ok')
+    return { blogs: [] }
   }
   try {
     return await response.json()
