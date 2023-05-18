@@ -39,23 +39,24 @@ export default async function RootLayout({ children }: Props) {
           <Header />
           {children}
 
-          <div className={styles.blogs}>
-            <div className={styles.blogNamesContainer}>
-              <Suspense
-                fallback={
-                  <div className={styles.loading}>
-                    <h1>Loading...</h1>
-                  </div>
-                }
-              >
-                {/* @ts-expect-error Async Server Component */}
-                <Blog />
-              </Suspense>
-            </div>
-          </div>
           <Footer />
         </main>
       </body>
     </html>
   )
+}
+{
+  /* <div className={styles.blogs}>
+<div className={styles.blogNamesContainer}>
+  <Suspense
+    fallback={
+      <div className={styles.loading}>
+        <h1>Loading...</h1>
+      </div>
+    }
+  >
+    <Blog />
+  </Suspense>
+</div>
+</div> */
 }
