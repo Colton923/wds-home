@@ -8,6 +8,9 @@ async function getBlogNames() {
       'Content-Type': 'application/json',
     },
   })
+  if (response.status !== 200) {
+    return { blogs: [] }
+  }
   return await response.json()
 }
 
