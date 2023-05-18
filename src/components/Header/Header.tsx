@@ -7,7 +7,9 @@ import styles from './Header.module.scss'
 export default function Header() {
   const handleChange = () => {
     const overlay = document.getElementById('overlay')
-    overlay?.classList.toggle(styles.active)
+    overlay?.classList.contains(styles.active) === true
+      ? overlay?.classList.remove(styles.active)
+      : overlay?.classList.add(styles.active)
   }
 
   const handleWhatWeDo = () => {

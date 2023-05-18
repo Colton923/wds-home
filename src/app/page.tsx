@@ -77,9 +77,6 @@ export default function Index() {
         })
     }
     Blogs()
-
-    const overlay = document.getElementById('overlay')
-    overlay?.classList.remove(styles.active)
   }, [])
 
   return (
