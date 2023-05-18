@@ -8,14 +8,7 @@ async function getBlogNames() {
       'Content-Type': 'application/json',
     },
   })
-  if (!response.ok) {
-    return { blogs: [] }
-  }
-  try {
-    return await response.json()
-  } catch (error) {
-    throw new Error('JSON parsing error')
-  }
+  return await response.json()
 }
 
 export default async function Blog() {
