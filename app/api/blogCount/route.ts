@@ -15,11 +15,7 @@ export async function GET() {
       token: process.env.KV_REST_API_TOKEN as string,
     })
     const blogs: Blog[] = (await kv.get('blog')) || []
-    const blogNames = blogs.map((blog) => {
-      return { title: blog.title, id: blog.id }
-    })
-
-    return NextResponse.json({ status: 'success', blogNames })
+    return NextResponse.json({ status: 'success', blogs })
   } catch (error) {
     console.log(error)
     return NextResponse.json({ status: 'error' })

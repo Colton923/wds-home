@@ -1,8 +1,10 @@
 import 'styles/globals.scss'
 import 'styles/Fonts.scss'
-
+import styles from 'styles/Home.module.scss'
 import Header from 'components/Header/Header'
 import Footer from 'components/Footer/Footer'
+import Blog from 'components/Blog/Blog'
+import { Suspense } from 'react'
 
 interface Props {
   children: React.ReactNode
@@ -36,6 +38,21 @@ export default async function RootLayout({ children }: Props) {
         <main>
           <Header />
           {children}
+
+          <div className={styles.blogs}>
+            <div className={styles.blogNamesContainer}>
+              <Suspense
+                fallback={
+                  <div className={styles.loading}>
+                    <h1>Loading...</h1>
+                  </div>
+                }
+              >
+                {/* @ts-expect-error Async Server Component */}
+                <Blog />
+              </Suspense>
+            </div>
+          </div>
           <Footer />
         </main>
       </body>

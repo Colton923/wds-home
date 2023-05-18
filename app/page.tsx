@@ -6,8 +6,6 @@ import { useState, useEffect } from 'react'
 import styles from 'styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
 import Ad from 'components/Ad/Ad'
-import { Suspense } from 'react'
-import Blog from 'components/Blog/Blog'
 
 interface FormData {
   name: string
@@ -186,10 +184,6 @@ export default async function Page() {
             {loading ?? loading ? 'Loading...' : 'SUBMIT'}
           </button>
         </form>
-      </div>
-      <div className={styles.blogs}>
-        {/* @ts-expect-error Async Server Component */}
-        <Blog />
       </div>
     </div>
   )
