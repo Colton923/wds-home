@@ -17,6 +17,7 @@ async function getBlogNames() {
 export default async function Blog() {
   const blogNamesData = getBlogNames()
   const [blogNames] = await Promise.all([blogNamesData])
+
   return (
     <div className={styles.blog}>
       <div className={styles.blogContainer}>
@@ -25,11 +26,10 @@ export default async function Blog() {
         </div>
         <div className={styles.blogBody}>
           {blogNames.blogs.map((blogName: BlogNames) => {
-            if (blogName === undefined) return <></>
             return (
               <div className={styles.blogItem} key={blogName.id}>
                 <h2 className={styles.blogItemTitle}>{blogName.title}</h2>
-                <a href={`https://webdevelopersolutions.com/blog/${blogName.id}`}>
+                <a href={`https://webdevelopersolutions.com/${blogName.id}`}>
                   Click here to read more
                 </a>
               </div>

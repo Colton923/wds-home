@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@vercel/kv'
-import type { Blog } from 'app/blog/[id]/page'
+import type { Blog } from 'app/[id]/page'
 
 export type BlogNames = {
   title: string
