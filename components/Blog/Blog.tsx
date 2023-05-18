@@ -26,7 +26,9 @@ export default async function Blog() {
             return (
               <div className={styles.blogItem} key={blogName.id}>
                 <h2 className={styles.blogItemTitle}>{blogName.title}</h2>
-                <a href={`/blog/${blogName.id}`}>Click here to read more</a>
+                <a href={`https://webdevelopersolutions.com/blog/${blogName.id}`}>
+                  Click here to read more
+                </a>
               </div>
             )
           })}
