@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import styles from 'styles/Home.module.scss'
-import { createClient } from '@vercel/kv'
 
 type BlogNames = {
   id: string
