@@ -278,3 +278,47 @@
     }
   }
 }
+
+.blogs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 100px;
+
+
+  .blogNamesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 50px;
+
+
+
+    .blogLink {
+
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 50px;
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      flex-direction: row;
+      text-decoration: none;
+
+      color:#004d968a;
+
+      &:hover {
+        color: #004d96;
+      }
+
+      @media (min-width: 1080px) {
+        width: 80%;
+        flex-direction: column;
+      }
+    }
+  } 
+}
+

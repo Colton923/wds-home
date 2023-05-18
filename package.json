@@ -13,6 +13,7 @@
     "src/**/*.{js,jsx,ts,tsx}": "eslint --cache --fix"
   },
   "dependencies": {
+    "@vercel/kv": "^0.2.1",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
     "lint-staged": "^13.2.2",
@@ -24,7 +25,8 @@
     "react-hook-form": "^7.43.9",
     "sass": "^1.62.1",
     "scss": "^0.2.4",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vercel": "^29.3.3"
   },
   "devDependencies": {
     "@types/node": "^20.1.4",

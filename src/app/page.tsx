@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react'
 import styles from 'styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
 import Ad from 'components/Ad/Ad'
+import type { BlogNames } from './api/blogCount/route'
+import { Suspense } from 'react'
 
 interface FormData {
   name: string
@@ -23,6 +25,7 @@ export default function Index() {
     formState: { errors },
     reset,
   } = useForm<FormData>({})
+  const [blogNames, setBlogNames] = useState<BlogNames[]>([])
 
   const ButtonClick = async (formData: FormData) => {
     if (errors.name || errors.email || errors.message) return
@@ -59,6 +62,15 @@ export default function Index() {
     contact?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const ReportBlogNames = async () => {
+    // getBlogNames type
+    // return
+    const Blogs: BlogNames[] = await fetch('api/blogCount')
+      .then((res) => res.json())
+      .then((res) => res.blogNames)
+    setBlogNames(Blogs)
+  }
+
   useEffect(() => {
     const script = document.createElement('script')
     script.src =
@@ -66,6 +78,8 @@ export default function Index() {
     script.async = true
     script.crossOrigin = 'anonymous'
     document.body.appendChild(script)
+
+    ReportBlogNames()
   }, [])
 
   return (
@@ -183,6 +197,18 @@ export default function Index() {
             {loading ? 'Loading...' : 'SUBMIT'}
           </button>
         </form>
+      </div>
+      <div className={styles.blogs}>
+        <Suspense fallback={<div>Loading...</div>}>
+          {blogNames.length > 0 &&
+            blogNames.map((blogName) => (
+              <div key={blogName.id} className={styles.blogNamesContainer}>
+                <Link href={`/blog/${blogName.id}`} className={styles.blogLink}>
+                  {blogName.title}
+                </Link>
+              </div>
+            ))}
+        </Suspense>
       </div>
     </div>
   )
