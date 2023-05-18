@@ -181,7 +181,7 @@ export default async function Page() {
             })}
           />
           <button className={styles.contactButton} type={'submit'}>
-            {loading ?? loading ? 'Loading...' : 'SUBMIT'}
+            {loading ? 'Loading...' : 'SUBMIT'}
           </button>
         </form>
       </div>
