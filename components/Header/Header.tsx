@@ -9,7 +9,17 @@ export default function Header() {
   return (
     <div className={styles.header}>
       <Overlay />
-      <div className={styles.sideBox}></div>
+      <div className={styles.sideBox}>
+        {' '}
+        <input
+          type="button"
+          value="<"
+          onClick={() => {
+            window.history.back()
+          }}
+          className={styles.backBtn}
+        />
+      </div>
       <div className={styles.logoBox}>
         <Link href="/">
           <Image

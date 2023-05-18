@@ -10,9 +10,6 @@ module.exports = {
     return config
   },
   reactStrictMode: true,
-  experimental: {
-    serverActions: true,
-  },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },

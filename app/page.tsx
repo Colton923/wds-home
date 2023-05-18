@@ -6,8 +6,8 @@ import { useState, useEffect } from 'react'
 import styles from 'styles/Home.module.scss'
 import { useForm } from 'react-hook-form'
 import Ad from 'components/Ad/Ad'
-import type { BlogNames } from './api/blogCount/route'
 import { Suspense } from 'react'
+import Blog from 'components/Blog/Blog'
 
 interface FormData {
   name: string
@@ -17,7 +17,7 @@ interface FormData {
   comments: string
 }
 
-export default function Index() {
+export default async function Page() {
   const [loading, setLoading] = useState(false)
   const {
     register,
@@ -25,7 +25,6 @@ export default function Index() {
     formState: { errors },
     reset,
   } = useForm<FormData>({})
-  const [blogNames, setBlogNames] = useState<BlogNames[]>([])
 
   const ButtonClick = async (formData: FormData) => {
     if (errors.name || errors.email || errors.message) return
@@ -70,20 +69,6 @@ export default function Index() {
     script.async = true
     script.crossOrigin = 'anonymous'
     document.body.appendChild(script)
-  }, [])
-
-  useEffect(() => {
-    const getBlogNames = async () => {
-      const response = await fetch('api/blogCount', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      const data = await response.json()
-      setBlogNames(data.blogNames)
-    }
-    getBlogNames()
   }, [])
 
   return (
@@ -198,21 +183,13 @@ export default function Index() {
             })}
           />
           <button className={styles.contactButton} type={'submit'}>
-            {loading ? 'Loading...' : 'SUBMIT'}
+            {loading ?? loading ? 'Loading...' : 'SUBMIT'}
           </button>
         </form>
       </div>
       <div className={styles.blogs}>
-        <Suspense fallback={<div>Loading...</div>}>
-          {blogNames?.length > 0 &&
-            blogNames.map((blogName) => (
-              <div key={blogName.id} className={styles.blogNamesContainer}>
-                <Link href={`/blog/${blogName.id}`} className={styles.blogLink}>
-                  {blogName.title}
-                </Link>
-              </div>
-            ))}
-        </Suspense>
+        {/* @ts-expect-error Async Server Component */}
+        <Blog />
       </div>
     </div>
   )
