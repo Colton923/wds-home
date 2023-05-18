@@ -70,9 +70,14 @@ export default function Index() {
     script.crossOrigin = 'anonymous'
     document.body.appendChild(script)
     const Blogs = async () => {
-      await fetch('api/blogCount')
+      await fetch('/api/blogCount')
         .then((res) => res.json())
         .then((res) => {
+          if (res.status !== 'success') {
+            setBlogNames([])
+            return
+          }
+
           setBlogNames(res.blogNames)
         })
     }
