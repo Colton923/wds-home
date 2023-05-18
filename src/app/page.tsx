@@ -71,9 +71,14 @@ export default function Index() {
     const Blogs = async () => {
       await fetch('api/blogCount')
         .then((res) => res.json())
-        .then((res) => setBlogNames(res.blogNames))
+        .then((res) => {
+          setBlogNames(res.blogNames)
+        })
     }
     Blogs()
+
+    const overlay = document.getElementById('overlay')
+    overlay?.classList.remove(styles.active)
   }, [])
 
   return (
