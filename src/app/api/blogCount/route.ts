@@ -19,7 +19,6 @@ export async function GET() {
 
     return NextResponse.json({ status: 'success', blogNames })
   } catch (error) {
-    C
     console.log(error)
     return NextResponse.json({ status: 'error' })
   }
