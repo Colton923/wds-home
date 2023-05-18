@@ -10,7 +10,6 @@ export default function Header() {
     <div className={styles.header}>
       <Overlay />
       <div className={styles.sideBox}>
-        {' '}
         <input
           type="button"
           value="<"

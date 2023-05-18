@@ -1,22 +1,27 @@
-import type { BlogNames } from 'app/api/blogCount/route'
-import styles from 'styles/Home.module.scss'
+'use client'
 
-export async function generateStaticParams() {
-  const response = await fetch('https://webdevelopersolutions.com/api/blogCount', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-  if (response.status !== 200) {
-    return { blogs: [] }
-  }
-  return await response.json()
+import { useState, useEffect } from 'react'
+import styles from 'styles/Home.module.scss'
+import { createClient } from '@vercel/kv'
+
+type BlogNames = {
+  id: string
+  title: string
 }
 
-export default async function Blog({ blogs }: { blogs: { blogs: BlogNames[] } }) {
-  const blogNames = blogs
+const Blog = () => {
+  const [blog, setBlog] = useState<BlogNames[]>([])
+  useEffect(() => {
+    fetch('/api/getBlogNames', {
+      method: 'POST',
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setBlog(res)
+      })
+  }, [])
 
+  if (!blog) return <div>loading...</div>
   return (
     <div className={styles.blog}>
       <div className={styles.blogContainer}>
@@ -24,13 +29,11 @@ export default async function Blog({ blogs }: { blogs: { blogs: BlogNames[] } })
           <h1 className={styles.blogTitle}>Blog</h1>
         </div>
         <div className={styles.blogBody}>
-          {blogNames.blogs.map((blogName: BlogNames) => {
+          {blog.map((blogName: BlogNames) => {
             return (
               <div className={styles.blogItem} key={blogName.id}>
                 <h2 className={styles.blogItemTitle}>{blogName.title}</h2>
-                <a href={`https://webdevelopersolutions.com/${blogName.id}`}>
-                  Click here to read more
-                </a>
+                <a href={`/${blogName.id}`}>Click here to read more</a>
               </div>
             )
           })}
@@ -39,3 +42,5 @@ export default async function Blog({ blogs }: { blogs: { blogs: BlogNames[] } })
     </div>
   )
 }
+
+export default Blog
