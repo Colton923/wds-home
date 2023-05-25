@@ -8,15 +8,25 @@
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   .cta {
+    @media (min-width: 1320px) {
+      width: 1280px;
+    }
+
+    margin: 175px 10px 50px 10px;
+
     display: flex;
     flex-direction: column;
-    margin: 175px 10px 50px 10px;
-    justify-content: left;
+    justify-content: center;
 
-    @media (min-width: 1080px) {
-      justify-content: center;
+    @media (max-width: 1320px) {
+      width: 90%;
+    }
+
+    @media (max-width: 600px) {
+      align-items: center;
     }
 
     .ctaTitle {
@@ -28,6 +38,10 @@
       font-size: 50px;
       font-weight: 700;
       text-align: center;
+
+      @media (max-width: 1320px) {
+        font-size: 40px;
+      }
     }
 
     .ctaText {
@@ -35,14 +49,14 @@
 
       color: #000;
       font-size: 20px;
-
       text-indent: 5px;
     }
 
     .ctaButton {
       background: #004d968a;
+      width: 220px;
       height: 50px;
-      margin: 20px 0 0 0;
+      margin: 25px 0 0 0;
 
       border: none;
       border-radius: 5px;
@@ -63,16 +77,29 @@
 
   .about {
     background: #ededed;
-    padding: 20px;
     margin-bottom: 50px;
+    padding: 20px;
 
-    @media (min-width: 1080px) {
+    @media (min-width: 1320px) {
+      width: 1280px;
+
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: space-around;
+      align-items: center;
+    }
+
+    @media (max-width: 1320px) {
+      width: 90%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
     }
 
     .aboutTitle {
+      width: 100%;
       margin-top: 50px;
 
       border-bottom: solid 4px #a9a9a9;
@@ -82,20 +109,20 @@
       font-weight: 700;
       text-align: left;
 
-      @media (min-width: 1080px) {
+      @media (min-width: 1320px) {
         align-self: center;
         margin-top: 0;
       }
     }
 
     .aboutList {
-      margin-top: 50px;
+      margin: 0;
     }
 
     .aboutListItem {
       margin-bottom: 15px;
 
-      font-size: 20px;
+      font-size: 22px;
       letter-spacing: 1px;
     }
 }
@@ -106,93 +133,91 @@
     background: #004d969c;
     height: 400px;
 
-    
-    align-items: center;
-    justify-content: space-around;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    @media (min-width: 1080px) {
+      width: 1280px;
+    }
+
+    @media (max-width: 1320px) {
+      width: 90%;
+      height: 700px;
+
+      flex-direction: column;
+    }
+
+    @media (max-width: 700px) {
+      height: 520px;
+    }
+
     overflow: hidden;
 
-    @media (max-width: 1080px) {
-      flex-direction: column;
-      height: 700px;
-    }
-
     .picture {
-      justify-content: center;
-      display: flex;
-      max-width: 100%;
+      width: 600px;
 
-      @media (min-width: 1080px) {
-        max-width: 50%;
+      @media (max-width: 700px) {
+        width: 350px;
+        height: 197px;
       }
 
+      display: flex;
+      justify-content: center;
+
       .imageSize {
-        max-width: inherit;
+        width: 100%;
+        height: 100%;
+
         border-radius: 10px;
 
-        @media (min-width: 1080px) {
-          width: 100%;
-          max-width: none;
+        &:hover {
+          opacity: 0.8;
+
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+          transform: scale(1.02);
+          transition: transform 0.5s ease;
         }
       } 
-    }
-
-    &:hover {
-      opacity: 0.7;
-      box-shadow: 0 0 10px #000;
     }
 }
 
   /* CONTACT */
 
   .contact {
-    margin-bottom: 50px;
+    margin-bottom: 120px;
 
     .contactTitle {
-      margin-top: 50px;
+      height: 200px;
 
       border-bottom: solid 4px #a9a9a9;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
 
       color: #474747;
       font-size: 50px;
       font-weight: 700;
-      text-align: center;
     }
 
     .contactForm {
       background: #ededed;
-      display: flex;
-
-      flex-direction: column;
-      align-items: center;
+      width: 600px;
       padding-bottom: 10px;
 
-      input, textarea, button {
-        width: 80%;
-        height: 50px;
-        margin-top: 20px;
-        padding-left: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-        border: none;
-        border-radius: 25px;
-        outline: none;
-
-        font-size: 18px;
-
-        @media (min-width: 1080px) {
-          width: 40%;
-        }
-        &:focus {
-          background: #d6d6d6;
-
-          border-radius: 20px;
-        }
+      @media (max-width: 700px) {
+        width: 375px;
       }
-
 
       .contactInput {
         background: #e3e3e3;
+        width: 450px;
         height: 50px;
         margin-top: 20px;
         padding-left: 30px;
@@ -202,10 +227,15 @@
         outline: none;
 
         font-size: 18px;
+
+        @media (max-width: 700px) {
+          width: 300px;
+        }
       }
 
       .contactInputError {
         background: #e3e3e3;
+        width: 450px;
         height: 50px;
         margin-top: 20px;
         padding-left: 30px;
@@ -215,6 +245,10 @@
         outline: none;
 
         font-size: 18px;
+
+        @media (max-width: 700px) {
+          width: 300px;
+        }
       }
 
       .contactInput:focus {
@@ -225,6 +259,7 @@
 
       .contactTextarea {
         background: #e3e3e3;
+        width: 450px;
         height: 140px;
         margin-top: 20px;
         padding-left: 30px;
@@ -236,10 +271,15 @@
         resize: none;
 
         font-size: 18px;
+
+        @media (max-width: 700px) {
+          width: 300px;
+        }
       }
 
       .contactTextareaError {
         background: #e3e3e3;
+        width: 450px;
         height: 140px;
         margin-top: 20px;
         padding-left: 30px;
@@ -251,6 +291,10 @@
         resize: none;
 
         font-size: 18px;
+
+        @media (max-width: 700px) {
+          width: 300px;
+        }
       }
 
       .contactTextarea:focus {
@@ -261,8 +305,9 @@
 
       .contactButton {
         background: #474747;
+        width: 250px;
         height: 50px;
-        margin-top: 20px;
+        margin: 20px 0 20px 0;
 
         border: none;
         border-radius: 25px;
@@ -281,12 +326,12 @@
 }
 
 .blogs {
+  background: #f5f5f5;
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  background: #f5f5f5;
-  padding: 10px;
 
   .blogNamesContainer {
     display: flex;
@@ -295,7 +340,6 @@
     width: 100%;
     margin-bottom: 50px;
     background: #e3e3e3;
-    padding: 3px;
 
 
     .blogLink {

@@ -39,7 +39,7 @@ export default async function RootLayout({ children }: Props) {
           {children}
           <div className={styles.blogs}>
             <div className={styles.blogNamesContainer}>
-              <Blog />
+              {/* <Blog /> */}
             </div>
           </div>
           <Footer />

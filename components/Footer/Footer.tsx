@@ -11,6 +11,7 @@ export default function Footer() {
         <Link href="mailto:c.mcclin@webdevsolutionsllc.com" className={styles.link}>
           c.mcclin@webdevsolutionsllc.com
         </Link>
+        <br />
         <Link href="tel:2408084635" className={styles.link}>
           &#40;240&#41; 808-4635
         </Link>
@@ -30,6 +31,7 @@ export default function Footer() {
         <Link href="mailto:k.koerne@webdevsolutionsllc.com" className={styles.link}>
           k.koerne@webdevsolutionsllc.com
         </Link>
+        <br />
         <Link href="tel:4046956774" className={styles.link}>
           &#40;404&#41; 695-6774
         </Link>

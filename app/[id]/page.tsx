@@ -1,3 +1,4 @@
+{/*
 import { kv } from '@vercel/kv'
 import styles from './Blog.module.scss'
 import Ad from 'components/Ad/Ad'
@@ -19,7 +20,6 @@ export default async function Page({ params }: { params: { id: string } }) {
       {blog?.map((item) => (
         <div key={item.id}>
           <h1>{item.title}</h1>
-          {/* item.content is all tag wrapped html items. */}
           <div
             className={styles.contentWrapper}
             dangerouslySetInnerHTML={{ __html: item.content }}
@@ -30,3 +30,4 @@ export default async function Page({ params }: { params: { id: string } }) {
     </div>
   )
 }
+*/}
