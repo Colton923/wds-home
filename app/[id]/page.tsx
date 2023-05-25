@@ -1,4 +1,3 @@
-{/*
 import { kv } from '@vercel/kv'
 import styles from './Blog.module.scss'
 import Ad from 'components/Ad/Ad'
@@ -30,4 +29,3 @@ export default async function Page({ params }: { params: { id: string } }) {
     </div>
   )
 }
-*/}
